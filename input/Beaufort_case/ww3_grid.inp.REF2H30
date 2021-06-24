@@ -1,0 +1,38 @@
+$ WAVEWATCH III Grid preprocessor input file
+$ ------------------------------------------
+  'WIZ CREG025 TRUNC.'
+$
+1.1 0.0373 32 24 0.
+$
+   F T T T F T
+$ geogr. CFL time step is the 2nd one....
+  800.  400.0  200.  5.
+$
+$ &PRO3 WDTHCG = 0., WDTHTH = 0. /
+  &PRO3 WDTHCG = 1.50, WDTHTH = 1.50 /
+$
+
+  &ST4 BETAMAX = 1.6 , SWELLF = 0.66, TAUWSHELTER = 0.3, 
+   SWELLF3=0.022, SWELLF4 = 150000., SWELLF7 = 360000. /
+  &SDS4 FXFM3 = 2.5 /
+  &OUTS P2SF =1, E3D = 1/
+$ I1P2SF = 1, I2P2SF =32, STH1MF = 1, STH2MF = 1 /
+  &SIC2 IC2DISPER = F, IC2TURB = 1., IC2ROUGH =0.0001, IC2DMAX =0.3, 
+     IC2REYNOLDS = 150000, IC2SMOOTH  = 200000., IC2VISC=1./
+  &SIS2 ISC1 = 1., IS2C2 = 0.000000, IS2C3 = 0. , IS2BACKSCAT=1.,
+   IS2BREAK = T, IS2DUPDATE = F , IS2CREEPB=2E7, IS2CREEPD=0.3,
+   IS2FLEXSTR=6E+05, IS2DMIN=20., IS2FREEFSD=T /
+  &REF1 REFCOAST=0.1, REFFREQ = 1., REFSLOPE =0.1, REFRMAX = 0.5 /
+$ &REF1 REFCOAST = 0.2 / 
+&MISC ICEDISP=F , ICEHMIN=0.3, ICEVOL2H=T /
+
+END OF NAMELISTS
+$
+  'CURV' T 'NONE'
+   528  522 
+  20 1.0 0.0 1 1 '(16F10.4)' 'NAME' 'lon_wiz.dat'
+  21 1.0 0.0 1 1 '(16F10.4)' 'NAME' 'lat_wiz.dat'
+ -0.1 7.50  9  -1. 1 1 '(16F10.4)' 'NAME' 'depth_wiz.dat'
+  23 1  1 '(16F10.4)'  NAME  'mask_wiz.dat'
+$
+  0. 0. 0. 0.  0

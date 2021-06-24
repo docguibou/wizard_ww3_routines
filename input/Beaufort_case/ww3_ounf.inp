@@ -1,0 +1,74 @@
+$ -------------------------------------------------------------------- $
+$ WAVEWATCH III Grid output post-processing                            $
+$--------------------------------------------------------------------- $
+$ Time, time increment and number of outputs
+$
+ 20100101 000000  300  9999  4
+$
+$ Request flags identifying fields as in ww3_shel input and
+$ section 2.4 fo the manual.
+$
+N
+DIR HS ICE SPR WND IC1 IC3 IC5 MSS T02 FP DP DPT TWI VCUR
+$ EF STH2M IC1 IC5 
+$ICE TWI FIC CUR WND UST HS EF LM DIR SPR FP DP PHS PTP PDIR PWS TWS WLV ABR UBR TAW CGE WCC T02 T01 TWA FAW TWO USS TUS FOC MSS CHA T0M1 
+$
+$ Output type ITYPE [0,1,2,3]
+$
+  4 4
+  0 1 2 3 4
+  F
+$ -------------------------------------------------------------------- $
+$ ITYPE = 0, inventory of file.
+$            No additional input, the above time range is ignored.
+$
+$ -------------------------------------------------------------------- $
+$ ITYPE = 1, print plots.
+$            IX,IY range and stride, flag for automatic scaling to
+$            maximum value (otherwise fixed scaling),
+$            vector component flag (dummy for scalar quantities).
+$
+$ 1 12 1 1 12 1 F T
+$
+$ -------------------------------------------------------------------- $
+$ ITYPE = 2, field statistics.
+$            IX,IY range.
+$
+$ 1 12 1 12
+$
+$ -------------------------------------------------------------------- $
+$ ITYPE = 3, transfer files.
+$            IX, IY range, IDLA and IDFM as in ww3_grid.inp.
+$            The additional option IDLA=5 gives ia longitude, lattitude 
+$            and parameter value(s) per record (defined points only).
+$
+$1 12518 1 1 3 2
+$
+$ For each field and time a new file is generated with the file name
+$ ww3.yymmddhh.xxx, where yymmddhh is a conventional time idicator,
+$ and xxx is a field identifier. The first record of the file contains
+$ a file ID (C*13), the time in yyyymmdd hhmmss format, the lowest,
+$ highest and number of longitudes (2R,I), id.  latitudes, the file
+$ extension name (C*$), a scale factor (R), a unit identifier (C*10),
+$ IDLA, IDFM, a format (C*11) and a number identifying undefined or
+$ missing values (land, ice, etc.).  The field follows as defined by
+$ IDFM and IDLA, defined as in the grid proprocessor. IDLA=5 is added
+$ and gives a set of records containing the longitude, latitude and
+$ parameter value. Note that the actual data is written as an integers.
+$ -------------------------------------------------------------------- $
+$ ITYPE = 4, Netcdf Files
+$            S3: number of characters in date
+$            IX, IY range
+$
+ww3.
+4
+ 1 9999 1 9999       
+$ For each field and time a new file is generated with the file name
+$ ww3.date_xxx.nc , where date is a conventional time idicator with S3
+$ characters,
+$ and xxx is a field identifier.
+$
+$
+$ -------------------------------------------------------------------- $
+$ End of input file                                                    $
+$ -------------------------------------------------------------------- $
