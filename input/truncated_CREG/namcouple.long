@@ -1,0 +1,131 @@
+##############################################################################
+#
+#      Input file for OASIS3
+# 
+#      This version is for use with ECHAM5 fluxes and
+#      surface conditions computed in mpi-om.
+#
+#      The file will be edited in the run-script to update it for the 
+#      actual integration period and grid dimensions.
+#
+#      Modified : S. Legutke    DKRZ             29.12.02
+#                 - updated from 2.4.t version
+#
+###############################################################################
+#  
+#      Input delimiters have to occupy position 1 to 9 !
+#      No blank lines allowed !
+#      Length of input lines <= 80 !
+#
+###############################################################################
+#
+# NFIELDS : total number of fields being exchanged.
+#
+ $NFIELDS
+         7
+ $END
+#
+###############################################################################
+# 
+# RUNTIME (<I8)
+#         total simulated time for the actual run in seconds
+#         the value will be set before the actual integration
+#
+ $RUNTIME
+# 12 days
+#           1036800
+#      31 days
+#       2678400
+#      42 days
+#    3628800
+#    47 days
+4060800 
+ $END
+#
+###############################################################################
+#
+ $NLOGPRT
+   1  1
+ $END
+#
+###############################################################################
+#
+ $STRINGS
+#
+#
+############################################################################
+#                      ICE  --->>>  WAVES
+############################################################################
+#
+# --- start Field 1 --- ice concentration
+#
+I_sic WW3__ICE   10  2400  1  ice_nextsim.nc  EXPORTED
+528 522  528 522 tor2 tor2  LAG=2400
+P  2  P  2
+#
+LOCTRANS 
+INSTANT
+# --- end field 1 ---
+# Field 2 : ic5 toy
+#~~~~~~~~~~~
+I_dmax WW3__IC5   11  2400  1  ice_nextsim.nc  EXPORTED
+528 522  528 522 tor2 tor2  LAG=2400
+R  0  R  0
+LOCTRANS 
+INSTANT
+#
+# --- end field 2 ---
+#
+# --- start Field 3 --- ice thickness
+#
+I_sit WW3__IC1   12  2400  1  ice_nextsim.nc  EXPORTED
+528 522  528 522 tor2 tor2  LAG=2400
+P  2  P  2
+LOCTRANS
+INSTANT
+#
+# --- end field 3 ---
+#
+I_dmean WW3__IC3 13  2400 1 ice_nextsim.nc EXPORTED
+528 522  528 522 tor2 tor2  LAG=2400
+R  0  R  0
+LOCTRANS 
+INSTANT
+############################################################################
+#                      WAVES  --->>>  ICE
+############################################################################
+#
+# --- start Field 3 --- wave stress on ice (x)
+#
+WW3_TWIX I_tauwix 22  2400  1  r-ww3.nc  EXPORTED
+528 522  528 522  tor2 tor2  LAG=2400
+P  2  P  2
+LOCTRANS 
+AVERAGE
+#
+# --- end field 3 ---
+#
+#
+# --- start Field 4 --- wave stress on ice (y)
+#
+WW3_TWIY I_tauwiy  23  2400  1  r-ww3.nc  EXPORTED
+528 522  528 522  tor2 tor2  LAG=2400
+P  2  P  2
+LOCTRANS 
+AVERAGE
+#
+# --- end field 4 ---
+#
+# --- start Field 6 --- wave curv
+#
+WW3_ICEF I_wlbk  25  2400  1  r-ww3.nc  EXPORTED 
+528 522  528 522  tor2 tor2  LAG=2400
+P  2  P  2
+LOCTRANS
+AVERAGE
+#
+# --- end field 5 ---
+#
+#AVERAGE
+#
+$END
